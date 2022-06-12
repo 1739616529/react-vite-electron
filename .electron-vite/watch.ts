@@ -20,9 +20,13 @@ async function use_watch_main() {
 		// console.log(e)
 		if (e.code === 'END') {
 			is_reload = true
-			electron_process.kill()
+			if(electron_process) electron_process.kill()
 		}
 	})
+}
+
+async function use_watch_preload() {
+	await build({configFile: '.electron-vite/preload.vite.config.ts', mode: process.env.NODE_ENV})
 }
 
 
@@ -73,6 +77,7 @@ function use_process_event() {
 async function start() {
 	await use_watch_renderer()
 	await use_watch_main()
+	await use_watch_preload()
 	use_electron_process()
 	use_process_event()
 }
