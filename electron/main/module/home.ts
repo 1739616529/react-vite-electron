@@ -1,3 +1,4 @@
+import { ipcMain } from "electron";
 import WinDispatch from "main/lib/window";
 
 export function use_home_win() {
@@ -7,4 +8,7 @@ export function use_home_win() {
 
     win.loadURL(WinDispatch.get_loadUrl());
     win.webContents.openDevTools();
+    ipcMain.on("test",()=>{
+        console.log("test");
+    });
 }
