@@ -17,29 +17,29 @@ export class WinDispatch {
     private _def_option: BrowserWindowConstructorOptions = {
         width: 800,
         height: 600,
-        webPreferences:{
-            preload:join(__dirname, "../preload/index.js")
+        webPreferences: {
+            preload: join( __dirname, "../preload/index.js" )
         }
     };
 
 
 
-    public getWin(win_name: keyof Wins) {
+    public getWin( win_name: keyof Wins ) {
         return this._wins[win_name];
     }
 
-    public createWin(win_name: keyof Wins) {
-        return (option: BrowserWindowConstructorOptions = {}) => {
+    public createWin( win_name: keyof Wins ) {
+        return ( option: BrowserWindowConstructorOptions = {} ) => {
             let is_exist = true;
             let win = this._wins[win_name];
 
-            if (win === undefined) {
+            if ( win === undefined ) {
                 is_exist = false;
-                win = new BrowserWindow(this.formatWinOption(option));
-                win.on("closed", () => {
+                win = new BrowserWindow( this.formatWinOption( option ) );
+                win.on( "closed", () => {
                     win = undefined;
                     delete this._wins[win_name];
-                });
+                } );
             }
 
             this._wins[win_name] = win;
@@ -48,14 +48,14 @@ export class WinDispatch {
     }
 
     public winsKill() {
-        for (const item in this._wins) {
+        for ( const item in this._wins ) {
             this._wins[item].close();
         }
     }
 
-    public get_loadUrl(path = ""): string {
+    public get_loadUrl( path = "" ): string {
         const url = app.isPackaged
-            ? `file:///${join(__dirname, "../index.html")}`
+            ? `file:///${join( __dirname, "../index.html" )}`
             : `http://${config.HOST}:${config.PROT}`;
 
         return `${url}#${path}`;
@@ -63,7 +63,7 @@ export class WinDispatch {
 
 
 
-    private formatWinOption<T extends BrowserWindowConstructorOptions>(option: T): T {
+    private formatWinOption<T extends BrowserWindowConstructorOptions>( option: T ): T {
         return { ...this._def_option, ...option, webPreferences: { ...this._def_option.webPreferences, ...option.webPreferences } };
     }
 
