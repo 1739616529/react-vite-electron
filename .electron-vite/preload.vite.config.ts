@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import { join } from 'path';
+import { builtinModules } from 'module'
 export default defineConfig({
 	root: __dirname,
 	resolve: {
@@ -17,5 +18,9 @@ export default defineConfig({
 			formats: ['cjs'],
 			fileName: () => '[name].js'
 		},
-	}
+		rollupOptions: {
+			external: ['electron', ...builtinModules]
+		},
+	},
+	
 })
