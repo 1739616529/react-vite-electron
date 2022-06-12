@@ -25,5 +25,6 @@ export default defineConfig({
 			external: ['electron', ...builtinModules]
 		},
 		watch: {}
-	}
+	},
+	publicDir:join(__dirname,'../electron/resources')
 });
