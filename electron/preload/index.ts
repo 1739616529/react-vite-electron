@@ -1,0 +1,1 @@
+import {ipcRenderer} from 'electron'
