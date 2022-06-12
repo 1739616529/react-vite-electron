@@ -12,7 +12,6 @@ export default defineConfig({
 		outDir: '../dist/preload',
 		emptyOutDir: true,
 		minify: process.env.NODE_ENV === 'production',
-		sourcemap: true,
 		lib: {
 			entry: join(__dirname, '../electron/preload/index.ts'),
 			formats: ['cjs'],
