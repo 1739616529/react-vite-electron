@@ -17,6 +17,9 @@ export class WinDispatch {
     private _def_option: BrowserWindowConstructorOptions = {
         width: 800,
         height: 600,
+        webPreferences:{
+            preload:join(__dirname, "../preload/index.js")
+        }
     };
 
 
@@ -52,7 +55,7 @@ export class WinDispatch {
 
     public get_loadUrl(path = ""): string {
         const url = app.isPackaged
-            ? `file:///${join(__dirname, "../renderer/index.html")}`
+            ? `file:///${join(__dirname, "../index.html")}`
             : `http://${config.HOST}:${config.PROT}`;
 
         return `${url}#${path}`;
