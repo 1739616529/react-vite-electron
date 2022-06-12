@@ -21,7 +21,8 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "arrow-parens": "always",
+        "arrow-spacing": ["error", { "before": true, "after": true }],
+        "@typescript-eslint/no-non-null-assertion": "off",
         "space-in-parens": [2, "always"],
         "space-before-blocks": [2, "always"],
         "object-curly-spacing": [2, "always"],
