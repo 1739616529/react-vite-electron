@@ -3,8 +3,6 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": [
-      "DOM",
-      "DOM.Iterable",
       "ESNext"
     ],
     "baseUrl": ".",
@@ -39,9 +37,4 @@
     "electron",
     "types"
   ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
 }
