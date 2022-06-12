@@ -15,7 +15,7 @@ export default defineConfig({
 		outDir: '../dist/main',
 		emptyOutDir: true,
 		minify: process.env.NODE_ENV === 'production',
-		sourcemap: true,
+		sourcemap:  process.env.NODE_ENV === 'development',
 		lib: {
 			entry: join(__dirname, '../electron/main/index.ts'),
 			formats: ['cjs'],
