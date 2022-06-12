@@ -7,12 +7,11 @@
     "dev": "esno ./.electron-vite/watch.ts",
     "build": "esno ./.electron-vite/build.ts && electron-builder"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "sqlite3": "^5.0.8"
-  },
-  "devDependencies": {
+    "sqlite3": "^5.0.8",
     "@types/fs-extra": "^9.0.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
