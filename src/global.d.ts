@@ -1,7 +1,7 @@
 export { };
 
 declare global {
-  interface Window {
-    ipcRenderer: import("electron").IpcRenderer
+    interface Window {
+        ipcRenderer: import( "electron" ).IpcRenderer
   }
 }
