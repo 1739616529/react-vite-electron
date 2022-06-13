@@ -58,7 +58,7 @@ export class WinDispatch {
             ? `file:///${join( __dirname, "../index.html" )}`
             : `http://${config.HOST}:${config.PROT}`;
 
-        return `${url}#${path}`;
+        return `${url}#/${path}`;
     }
 
 
