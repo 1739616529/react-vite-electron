@@ -14,7 +14,7 @@ dist-ssr
 *.local
 dist
 release
-
+vanilla
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
