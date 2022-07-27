@@ -1,8 +1,11 @@
 import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
 import { join } from "path";
 import config from "project/config";
+/** 添加新窗口要在这里添加 窗口 标识 */
+
 export type Wins = {
     home?: BrowserWindow;
+    view?: BrowserWindow;
 };
 
 export class WinDispatch {
@@ -34,7 +37,6 @@ export class WinDispatch {
                 is_exist = false;
                 win = new BrowserWindow(this.formatWinOption(option));
                 win.on("closed", () => {
-                    win = undefined;
                     delete this._wins[win_name];
                 });
             }
