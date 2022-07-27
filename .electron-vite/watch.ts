@@ -45,6 +45,9 @@ function use_electron_process() {
     electron_process.stdout?.pipe(process.stdout);
 
     electron_process.stderr?.pipe(process.stderr);
+    electron_process.on("close", () => {
+        process.exit(0);
+    });
 }
 
 function use_argvs(): string[] {
