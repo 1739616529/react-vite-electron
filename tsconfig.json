@@ -4,6 +4,7 @@
         "useDefineForClassFields": true,
         "lib": ["ESNext", "DOM", "DOM.Iterable"],
         "baseUrl": ".",
+        "outDir": "./vanilla",
         "allowJs": false,
         "skipLibCheck": true,
         "esModuleInterop": false,
@@ -15,7 +16,7 @@
         "moduleResolution": "Node",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "noEmit": true,
+        "noEmit": false,
         "jsx": "react-jsx",
         "paths": {
             "main/*": ["./electron/main/*"],
@@ -23,5 +24,6 @@
             "project/*": ["./*"]
         }
     },
-    "include": [".", ".electron-vite/*"]
+    "include": ["src/*", "electron/**/*", ".electron-vite/*"],
+    "exclude": ["node_modules"]
 }
