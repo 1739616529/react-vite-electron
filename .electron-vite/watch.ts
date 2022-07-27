@@ -39,13 +39,14 @@ async function use_watch_renderer() {
 }
 
 function use_electron_process() {
-    if (electron_process) electron_process.kill("SIGINT");
+    electron_process?.kill("SIGINT");
     electron_process = spawn(electron as any, use_argvs());
 
     electron_process.stdout?.pipe(process.stdout);
 
     electron_process.stderr?.pipe(process.stderr);
-    electron_process.on("close", () => {
+    electron_process.on("exit", (code, sig) => {
+        if (sig === "SIGINT") return;
         process.exit(0);
     });
 }
