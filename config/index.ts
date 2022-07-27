@@ -1,8 +1,4 @@
-
-
 export default {
-
-
     PROT: 8898,
     HOST: "127.0.0.1",
 

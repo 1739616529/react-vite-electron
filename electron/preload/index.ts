@@ -1,3 +1,3 @@
 import { ipcRenderer, contextBridge } from "electron";
 
-contextBridge.exposeInMainWorld( "ipcRenderer", ipcRenderer );
+contextBridge.exposeInMainWorld("ipcRenderer", ipcRenderer);

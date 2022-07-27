@@ -1,9 +1,9 @@
 import { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-window.ipcRenderer.send( "test", "hello electron" );
+window.ipcRenderer.send("test", "hello electron");
 function App() {
-    const [count, setCount] = useState( 0 );
+    const [count, setCount] = useState(0);
 
     return (
         <div className="App">
@@ -11,12 +11,12 @@ function App() {
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>Hello Vite + React!</p>
                 <p>
-                    <button type="button" onClick={() => setCount( ( count ) => count + 1 )}>
-            count is: {count}
+                    <button type="button" onClick={() => setCount((count) => count + 1)}>
+                        count is: {count}
                     </button>
                 </p>
                 <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
+                    Edit <code>App.tsx</code> and save to test HMR updates.
                 </p>
                 <p>
                     <a
@@ -25,7 +25,7 @@ function App() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-            Learn React
+                        Learn React
                     </a>
                     {" | "}
                     <a
@@ -34,7 +34,7 @@ function App() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-            Vite Docs
+                        Vite Docs
                     </a>
                 </p>
             </header>
