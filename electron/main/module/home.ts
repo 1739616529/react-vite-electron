@@ -6,9 +6,9 @@ export function use_home_win() {
 
     if (is_exist) return;
 
-    win.loadURL(WinDispatch.get_loadUrl());
+    win.loadURL(WinDispatch.getLoadUrl());
     win.webContents.openDevTools();
-    ipcMain.on("test", (e: Event, data: string) => {
+    ipcMain.on("test", (e, data: string) => {
         console.log("this is renderer send msg data is: ", data);
     });
 }

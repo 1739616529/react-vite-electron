@@ -44,16 +44,8 @@ export class WinDispatch {
         };
     }
 
-    public winsKill() {
-        for (const item in this._wins) {
-            this._wins[item].close();
-        }
-    }
-
-    public get_loadUrl(path = ""): string {
-        const url = app.isPackaged
-            ? `file:///${join(__dirname, "../index.html")}`
-            : `http://${config.HOST}:${config.PROT}`;
+    public getLoadUrl(path = ""): string {
+        const url = app.isPackaged ? `file:///${join(__dirname, "../index.html")}` : `http://${config.HOST}:${config.PROT}`;
 
         return `${url}#/${path}`;
     }
