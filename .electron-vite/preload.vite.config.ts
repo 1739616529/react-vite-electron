@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, BuildOptions } from "vite";
 import { join } from "path";
 import { builtinModules } from "module";
 export default defineConfig({
@@ -22,4 +22,4 @@ export default defineConfig({
         },
         watch: {},
     },
-});
+}) as BuildOptions;

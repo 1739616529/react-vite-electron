@@ -1,13 +1,15 @@
 process.env.NODE_ENV = "production";
 
-import { join } from "path";
 import { build } from "vite";
+import main_vite_config from "./main.vite.config";
+import preload_vite_config from "./preload.vite.config";
+import renderer_vite_config from "./renderer.vite.config";
 import type { RollupWatcher } from "rollup";
 
 async function use_main_build() {
     return new Promise(async (resolve) => {
         const watch = (await build({
-            configFile: join(__dirname, "./main.vite.config.ts"),
+            build: main_vite_config,
         })) as RollupWatcher;
         watch.on("event", (data) => {
             if (data.code === "END") {
@@ -19,12 +21,12 @@ async function use_main_build() {
 }
 
 async function use_renderer_build() {
-    await build({ configFile: join(__dirname, "./renderer.vite.config.ts") });
+    await build({ build: renderer_vite_config });
 }
 
 async function use_preload_build() {
     return new Promise(async (resolve) => {
-        const watch = (await build({ configFile: join(__dirname, "./preload.vite.config.ts") })) as RollupWatcher;
+        const watch = (await build({ build: preload_vite_config })) as RollupWatcher;
         watch.on("event", (data) => {
             if (data.code === "END") {
                 watch.close();

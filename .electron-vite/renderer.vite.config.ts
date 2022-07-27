@@ -1,5 +1,5 @@
 import { join } from "path";
-import { defineConfig } from "vite";
+import { defineConfig, BuildOptions } from "vite";
 import react from "@vitejs/plugin-react";
 import config from "../config";
 // https://vitejs.dev/config/
@@ -23,4 +23,4 @@ export default defineConfig({
         host: config.HOST,
         port: config.PROT,
     },
-});
+}) as BuildOptions;
