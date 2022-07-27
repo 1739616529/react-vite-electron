@@ -23,7 +23,15 @@ async function use_renderer_build() {
 }
 
 async function use_preload_build() {
-    await build({ configFile: join(__dirname, "./preload.vite.config.ts") });
+    return new Promise(async (resolve) => {
+        const watch = (await build({ configFile: join(__dirname, "./preload.vite.config.ts") })) as RollupWatcher;
+        watch.on("event", (data) => {
+            if (data.code === "END") {
+                watch.close();
+                resolve(0);
+            }
+        });
+    });
 }
 
 async function start() {
