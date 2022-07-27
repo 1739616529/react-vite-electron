@@ -7,30 +7,27 @@ import electron from "electron";
 import type { ChildProcess } from "child_process";
 import type { RollupWatcher } from "rollup";
 let electron_process: ChildProcess;
-let is_reload = false;
 let argvs: string[] = [];
 
 async function use_watch_main() {
     const watch: RollupWatcher = (await build({
-        configFile: ".electron-vite/main.vite.config.ts",
+        configFile: join(__dirname, "./main.vite.config.ts"),
         mode: process.env.NODE_ENV,
     })) as RollupWatcher;
     watch.on("change", (data) => {
         console.log("update file: ", data);
-    });
-    watch.on("event", (e) => {
-        // console.log(e)
-        if (e.code === "END") {
-            is_reload = true;
-            if (electron_process) electron_process.kill();
-        }
+        use_electron_process();
     });
 }
 
 async function use_watch_preload() {
-    await build({
-        configFile: ".electron-vite/preload.vite.config.ts",
+    const watch: RollupWatcher = (await build({
+        configFile: join(__dirname, "./preload.vite.config.ts"),
         mode: process.env.NODE_ENV,
+    })) as RollupWatcher;
+    watch.on("change", (data) => {
+        console.log("update file: ", data);
+        use_electron_process();
     });
 }
 
@@ -42,25 +39,12 @@ async function use_watch_renderer() {
 }
 
 function use_electron_process() {
-    if (electron_process) electron_process.kill();
+    if (electron_process) electron_process.kill("SIGINT");
     electron_process = spawn(electron as any, use_argvs());
 
-    electron_process.stdout?.on("data", (data: string) => {
-        console.log("msg:", data.toString());
-    });
+    electron_process.stdout?.pipe(process.stdout);
 
-    electron_process.stderr?.on("data", (data: string) => {
-        console.log("err: ", data.toString());
-    });
-
-    electron_process.on("close", () => {
-        if (is_reload) {
-            use_electron_process();
-            is_reload = false;
-            return;
-        }
-        process.exit(0);
-    });
+    electron_process.stderr?.pipe(process.stderr);
 }
 
 function use_argvs(): string[] {
@@ -74,8 +58,11 @@ function use_argvs(): string[] {
 }
 
 function use_process_event() {
+    process.on("SIGINT", () => {
+        process.exit();
+    });
     process.on("exit", () => {
-        if (electron_process) electron_process.kill();
+        electron_process?.kill();
     });
 }
 async function start() {
