@@ -14,7 +14,7 @@ export default {
         minify: process.env.NODE_ENV === "production",
         sourcemap: process.env.NODE_ENV === "development",
         lib: {
-            entry: join(__dirname, "../electron/main/index.ts"),
+            entry: join(__dirname, "../electron/main/index"),
             formats: ["cjs"],
             fileName: () => "[name].js",
         },
