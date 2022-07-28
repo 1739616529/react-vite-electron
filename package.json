@@ -8,11 +8,6 @@
         "build": "esno ./.electron-vite/build.js && electron-builder"
     },
     "devDependencies": {
-        "@types/fs-extra": "^9.0.13",
-        "@types/react": "^18.0.15",
-        "@types/react-dom": "^18.0.0",
-        "@typescript-eslint/eslint-plugin": "^5.27.1",
-        "@typescript-eslint/parser": "^5.27.1",
         "@vitejs/plugin-react": "^1.3.0",
         "electron": "^19.0.9",
         "electron-builder": "^23.1.0",
@@ -22,7 +17,6 @@
         "fs-extra": "^10.1.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "typescript": "^4.7.4",
         "vite": "^3.0.3"
     }
 }

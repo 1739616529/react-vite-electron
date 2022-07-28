@@ -4,22 +4,16 @@ module.exports = {
         es2021: true,
         node: true,
     },
-    extends: [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-    ],
-    parser: "@typescript-eslint/parser",
+    extends: ["eslint:recommended", "plugin:react/recommended"],
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
         },
         ecmaVersion: "latest",
     },
-    plugins: ["react", "@typescript-eslint"],
+    plugins: ["react"],
     rules: {
         "arrow-spacing": ["error", { before: true, after: true }],
-        "@typescript-eslint/no-non-null-assertion": "off",
         "space-in-parens": [2, "never"],
         "space-before-blocks": [2, "always"],
         "object-curly-spacing": [2, "always"],
