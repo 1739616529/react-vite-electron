@@ -13,7 +13,7 @@ export default defineConfig({
         emptyOutDir: true,
         minify: process.env.NODE_ENV === "production",
         lib: {
-            entry: join(__dirname, "../electron/preload/index.ts"),
+            entry: join(__dirname, "../electron/preload/index"),
             formats: ["cjs"],
             fileName: () => "[name].js",
         },
