@@ -1,14 +1,11 @@
 process.env.NODE_ENV = "production";
-
-import { join } from "path";
 import { build } from "vite";
-import type { RollupWatcher } from "rollup";
-
+import { get_vite_config_path } from "./tools";
 async function use_main_build() {
     return new Promise(async (resolve) => {
         const watch = (await build({
-            configFile: join(__dirname, "./main.vite.config.ts"),
-        })) as RollupWatcher;
+            configFile: get_vite_config_path("main.vite.config"),
+        }));
         watch.on("event", (data) => {
             if (data.code === "END") {
                 watch.close();
@@ -17,14 +14,12 @@ async function use_main_build() {
         });
     });
 }
-
 async function use_renderer_build() {
-    await build({ configFile: join(__dirname, "./renderer.vite.config.ts") });
+    await build({ configFile: get_vite_config_path("renderer.vite.config") });
 }
-
 async function use_preload_build() {
     return new Promise(async (resolve) => {
-        const watch = (await build({ configFile: join(__dirname, "./preload.vite.config.ts") })) as RollupWatcher;
+        const watch = (await build({ configFile: get_vite_config_path("preload.vite.config") }));
         watch.on("event", (data) => {
             if (data.code === "END") {
                 watch.close();
@@ -33,13 +28,10 @@ async function use_preload_build() {
         });
     });
 }
-
 async function start() {
     await use_renderer_build();
     await use_main_build();
     await use_preload_build();
-
     process.exit(0);
 }
-
 start();

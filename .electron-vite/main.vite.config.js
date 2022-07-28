@@ -1,8 +1,6 @@
 import { join } from "path";
-import { defineConfig } from "vite";
 import { builtinModules } from "module";
-
-export default defineConfig({
+export default {
     root: __dirname,
     resolve: {
         alias: {
@@ -26,4 +24,4 @@ export default defineConfig({
         watch: {},
     },
     publicDir: join(__dirname, "../electron/resources"),
-});
+};
