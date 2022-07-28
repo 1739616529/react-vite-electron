@@ -15,6 +15,7 @@ dist-ssr
 dist
 release
 vanilla
+scripts/vanilla.js
 
 # Editor directories and files
 .vscode/*
