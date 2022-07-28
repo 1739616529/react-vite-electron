@@ -4,21 +4,17 @@ import { join } from "path";
 import { build, createServer } from "vite";
 import { spawn } from "child_process";
 import electron from "electron";
+import { get_vite_config_path } from "./tools";
 import type { ChildProcess } from "child_process";
 import type { RollupWatcher } from "rollup";
-import main_vite_config from "./main.vite.config";
-import preload_vite_config from "./preload.vite.config";
-import renderer_vite_config from "./renderer.vite.config";
 let electron_process: ChildProcess;
 let argvs: string[] = [];
-console.log("main_vite_config", main_vite_config);
+
 async function use_watch_main() {
-    console.log("main");
     const watch: RollupWatcher = (await build({
-        configFile: join(__dirname, "main.vite.config.ts"),
+        configFile: get_vite_config_path("main.vite.config"),
         mode: process.env.NODE_ENV,
     })) as RollupWatcher;
-    console.log("watch", watch);
     watch.on("change", (data) => {
         console.log("update file: ", data);
         use_electron_process();
@@ -27,7 +23,7 @@ async function use_watch_main() {
 
 async function use_watch_preload() {
     const watch: RollupWatcher = (await build({
-        build: preload_vite_config,
+        configFile: get_vite_config_path("preload.vite.config"),
         mode: process.env.NODE_ENV,
     })) as RollupWatcher;
     watch.on("change", (data) => {
@@ -38,7 +34,7 @@ async function use_watch_preload() {
 
 async function use_watch_renderer() {
     const rednerer = await createServer({
-        build: renderer_vite_config,
+        configFile: get_vite_config_path("renderer.vite.config"),
     });
     await rednerer.listen();
 }
@@ -75,10 +71,10 @@ function use_process_event() {
     });
 }
 async function start() {
-    // await use_watch_renderer();
+    await use_watch_renderer();
     await use_watch_main();
-    // await use_watch_preload();
-    // use_electron_process();
-    // use_process_event();
+    await use_watch_preload();
+    use_electron_process();
+    use_process_event();
 }
 start();
