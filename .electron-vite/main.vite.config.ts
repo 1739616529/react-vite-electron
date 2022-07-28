@@ -1,8 +1,8 @@
 import { join } from "path";
-import { defineConfig, BuildOptions } from "vite";
+import { defineConfig } from "vite";
 import { builtinModules } from "module";
-
-export default {
+import config from "project/config";
+export default defineConfig({
     root: __dirname,
     resolve: {
         alias: {
@@ -21,9 +21,9 @@ export default {
             fileName: () => "[name].js",
         },
         rollupOptions: {
-            external: ["electron", ...builtinModules],
+            external: ["electron", ...config.INTRODUCTION, ...builtinModules],
         },
         watch: {},
     },
     publicDir: join(__dirname, "../electron/resources"),
-} as BuildOptions;
+});
