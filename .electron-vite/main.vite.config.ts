@@ -1,7 +1,7 @@
 import { join } from "path";
 import { defineConfig } from "vite";
 import { builtinModules } from "module";
-import config from "project/config";
+import config from "../config";
 export default defineConfig({
     root: __dirname,
     resolve: {
