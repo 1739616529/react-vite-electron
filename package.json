@@ -1,5 +1,5 @@
 {
-    "name": "electron-vite-tmpl",
+    "name": "react-vite-electron",
     "private": true,
     "version": "1.0.0",
     "main": "dist/main/index.js",
