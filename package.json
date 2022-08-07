@@ -4,9 +4,9 @@
     "version": "1.0.0",
     "main": "dist/main/index.js",
     "scripts": {
-        "dev": "esno ./.electron-vite/watch.ts",
-        "build": "esno ./.electron-vite/build.ts && electron-builder",
-        "vanilla": "esno ./scripts/vanilla.ts"
+        "dev": "esno ./.electron-vite/watch",
+        "build": "esno ./.electron-vite/build && electron-builder",
+        "vanilla": "esno ./scripts/vanilla"
     },
     "devDependencies": {
         "@types/fs-extra": "^9.0.13",
