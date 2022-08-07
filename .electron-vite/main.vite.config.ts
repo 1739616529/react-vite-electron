@@ -23,7 +23,6 @@ export default defineConfig({
         rollupOptions: {
             external: ["electron", ...config.INTRODUCTION, ...builtinModules],
         },
-        watch: {},
     },
     publicDir: join(__dirname, "../electron/resources"),
 });
