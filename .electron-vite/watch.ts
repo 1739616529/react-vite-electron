@@ -12,14 +12,14 @@ let electron_process: ChildProcess;
 let argvs: string[] = [];
 
 async function use_watch_main() {
-    build({
+    await build({
         configFile: get_vite_config_path("main.vite.config"),
         mode: process.env.NODE_ENV,
     });
 }
 
 async function use_watch_preload() {
-    build({
+    await build({
         configFile: get_vite_config_path("preload.vite.config"),
         mode: process.env.NODE_ENV,
     });
@@ -65,14 +65,11 @@ function use_process_event() {
 }
 function use_electron_file_watch() {
     const file_change = antiShake((event: string, filename: string) => {
-        console.log("event", event);
-        console.log("filename", filename);
         if (event === "change") {
             console.log(`change file:----->     ${filename}`);
             use_electron_process();
         }
     });
-    console.log(resolve("electron/main"));
     watch(resolve("electron/main"), { recursive: true }, file_change);
     watch(resolve("electron/preload"), { recursive: true }, file_change);
 }
