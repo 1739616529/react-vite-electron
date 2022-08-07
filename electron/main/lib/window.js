@@ -1,38 +1,26 @@
-import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
+import { app, BrowserWindow } from "electron";
 import { join } from "path";
 import config from "project/config";
-/** 添加新窗口要在这里添加 窗口 标识 */
-
-export type Wins = {
-    home?: BrowserWindow;
-    view?: BrowserWindow;
-};
-
 export class WinDispatch {
-    private _wins: Wins = {};
-
-    public get wins() {
+    _wins = {};
+    get wins() {
         return this._wins;
     }
-
     //  默认配置
-    private _def_option: BrowserWindowConstructorOptions = {
+    _def_option = {
         width: 800,
         height: 600,
         webPreferences: {
             preload: join(__dirname, "../preload/index.js"),
         },
     };
-
-    public getWin(win_name: keyof Wins) {
+    getWin(win_name) {
         return this._wins[win_name];
     }
-
-    public createWin(win_name: keyof Wins) {
-        return (option: BrowserWindowConstructorOptions = {}) => {
+    createWin(win_name) {
+        return (option = {}) => {
             let is_exist = true;
             let win = this._wins[win_name];
-
             if (win === undefined) {
                 is_exist = false;
                 win = new BrowserWindow(this.formatWinOption(option));
@@ -40,19 +28,15 @@ export class WinDispatch {
                     delete this._wins[win_name];
                 });
             }
-
             this._wins[win_name] = win;
             return { win, is_exist };
         };
     }
-
-    public getLoadUrl(path = ""): string {
+    getLoadUrl(path = "") {
         const url = app.isPackaged ? `file:///${join(__dirname, "../index.html")}` : `http://${config.HOST}:${config.PROT}`;
-
         return `${url}#/${path}`;
     }
-
-    private formatWinOption<T extends BrowserWindowConstructorOptions>(option: T): T {
+    formatWinOption(option) {
         return {
             ...this._def_option,
             ...option,
@@ -60,5 +44,4 @@ export class WinDispatch {
         };
     }
 }
-
 export default new WinDispatch();

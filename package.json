@@ -4,8 +4,8 @@
     "version": "1.0.0",
     "main": "dist/main/index.js",
     "scripts": {
-        "dev": "esno ./.electron-vite/watch.js",
-        "build": "esno ./.electron-vite/build.js && electron-builder"
+        "dev": "esno ./.electron-vite/watch",
+        "build": "esno ./.electron-vite/build && electron-builder"
     },
     "devDependencies": {
         "@vitejs/plugin-react": "^1.3.0",
