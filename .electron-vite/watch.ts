@@ -64,9 +64,10 @@ function use_process_event() {
     });
 }
 function use_electron_file_watch() {
-    const file_change = antiShake((event: string, filename: string) => {
+    const file_change = antiShake(async (event: string, filename: string) => {
         if (event === "change") {
             console.log(`change file:----->     ${filename}`);
+            await Promise.all([use_watch_main(), use_watch_preload()]);
             use_electron_process();
         }
     });
@@ -74,9 +75,7 @@ function use_electron_file_watch() {
     watch(resolve("electron/preload"), { recursive: true }, file_change);
 }
 async function start() {
-    await use_watch_renderer();
-    await use_watch_main();
-    await use_watch_preload();
+    await Promise.all([use_watch_main(), use_watch_preload(), use_watch_renderer()]);
     use_electron_process();
     use_electron_file_watch();
     use_process_event();
