@@ -33,10 +33,10 @@ module.exports = {
         eqeqeq: [2, "allow-null"],
         "comma-spacing": [2, { before: false, after: true }],
         "array-bracket-spacing": [2, "never"],
-        "react/react-in-jsx-scope": "on",
+        "react/react-in-jsx-scope": 0,
         indent: ["error", 4],
         "linebreak-style": ["error", "unix"],
         quotes: ["error", "double"],
-        semi: ["error", "always"],
+        // semi: ["error", "always"],
     },
 };
