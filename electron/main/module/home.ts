@@ -7,8 +7,14 @@ export function use_home_win() {
     if (WinDispatch.getWin(win_name)) return;
     const { is_exist, win } = WinDispatch.createWin(win_name)({ title: "真的吗哈哈" });
 
+
     if (is_exist) return;
 
     win.loadURL(WinDispatch.getLoadUrl());
     win.webContents.openDevTools();
+
+
+    ipcMain.on("test", (e, msg, cout) => {
+        console.log("this is frod end msg: ", msg, cout);
+    });
 }
