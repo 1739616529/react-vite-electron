@@ -1,31 +1,11 @@
 {
     "name": "react-vite-electron",
-    "private": true,
     "version": "1.0.0",
-    "main": "dist/main/index.js",
+    "workspaces":[
+        "./package/*"
+    ],
     "scripts": {
-        "dev": "esno ./.electron-vite/watch",
-        "build": "esno ./.electron-vite/build && electron-builder",
-        "vanilla": "esno ./scripts/vanilla"
-    },
-    "devDependencies": {
-        "@types/fs-extra": "^9.0.13",
-        "@types/react": "^18.0.15",
-        "@types/react-dom": "^18.0.0",
-        "@types/shelljs": "^0.8.11",
-        "@typescript-eslint/eslint-plugin": "^5.27.1",
-        "@typescript-eslint/parser": "^5.27.1",
-        "@vitejs/plugin-react": "^1.3.0",
-        "electron": "^22.0.0",
-        "electron-builder": "^23.1.0",
-        "eslint": "^8.17.0",
-        "eslint-plugin-react": "^7.30.0",
-        "esno": "^0.16.3",
-        "fs-extra": "^10.1.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "shelljs": "^0.8.5",
-        "typescript": "^4.7.4",
-        "vite": "^4.0.2"
+        "vanilla": "node ./script/vanilla.js"
+        
     }
 }
