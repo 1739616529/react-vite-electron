@@ -14,10 +14,13 @@ import { RollupWatcher } from "rollup";
 
 
 
-function main_file_change (event: RollupWatcher, init = false) {
+function main_file_change (event: RollupWatcher, init = 1) {
     event.on("event", (e) => {
-        if (e.code !== "BUNDLE_END" && init) return
-        init = true
+        if (e.code !== "BUNDLE_END") return 
+        if (init) {
+            init--;
+            return;
+        }
         use_electron_process()
     })
 }
