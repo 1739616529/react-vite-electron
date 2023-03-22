@@ -1,8 +1,6 @@
 import { UserConfig, UserConfigFn } from "vite";
 import { join } from "path";
-import { builtinModules } from "module";
-import { watch } from "./config";
-import { def_external } from "./tools";
+import { watch, def_external } from "./config";
 export default <UserConfigFn>function({mode}){
 
     const _config: UserConfig = {

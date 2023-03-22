@@ -1,8 +1,8 @@
 import { join } from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import config from "../config";
-import { def_external } from "./tools";
+import { PORT, HOST } from "../config";
+import { def_external } from "./config"
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
@@ -24,7 +24,7 @@ export default defineConfig({
         },
     },
     server: {
-        host: config.HOST,
-        port: config.PROT,
+        host: HOST,
+        port: PORT,
     },
 });
