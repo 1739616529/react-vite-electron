@@ -1,7 +1,8 @@
 import { UserConfig, UserConfigFn } from "vite";
 import { join } from "path";
 import { builtinModules } from "module";
-import config from "../config";
+import { watch } from "./config";
+import { def_external } from "./tools";
 export default <UserConfigFn>function({mode}){
 
     const _config: UserConfig = {
@@ -21,12 +22,12 @@ export default <UserConfigFn>function({mode}){
                 fileName: () => "[name].js",
             },
             rollupOptions: {
-                external: ["electron", ...builtinModules],
+                external: [ ...def_external ],
             },
         },
     }
 
-    if (mode === "development") _config.build!["watch"] = config.watch || {}
+    if (mode === "development") _config.build!["watch"] = watch || {}
 
     return _config
 };

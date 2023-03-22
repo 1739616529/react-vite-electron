@@ -2,6 +2,7 @@ import { join } from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import config from "../config";
+import { def_external } from "./tools";
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [react()],
@@ -18,6 +19,9 @@ export default defineConfig({
         emptyOutDir: true,
         target: "esnext",
         minify: "esbuild",
+        rollupOptions: {
+            external: [ ...def_external ],
+        },
     },
     server: {
         host: config.HOST,

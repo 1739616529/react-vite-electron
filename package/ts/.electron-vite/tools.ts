@@ -1,4 +1,6 @@
 import { join } from "path";
+import { builtinModules } from "module";
+import { dependencies } from "../package.json"
 export type config_file_name = "main.vite.config" | "preload.vite.config" | "renderer.vite.config";
 export function get_vite_config_path(config_file_name: config_file_name) {
     return join(__dirname, `${config_file_name}.${__filename.substr(-2)}`);
@@ -17,3 +19,6 @@ export function antiShake(fn: (...args: any[]) => any, delay: number = 300): (..
         }, delay);
     };
 }
+
+
+export const def_external = ["electron", ...builtinModules, ...Object.keys(dependencies)]
