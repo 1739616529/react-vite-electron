@@ -24,6 +24,6 @@
             "project/*": ["./*"]
         }
     },
-    "include": ["src/*", "package/ts/.electron-vite/*", "package/ts/config/*", "scripts/*", "electron/**/*", "electron/**/**/*"],
+    "include": ["**/*", "./.electron-vite/*"],
     "exclude": ["node_modules"]
 }
