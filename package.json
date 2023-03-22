@@ -1,11 +1,13 @@
 {
     "name": "react-vite-electron",
     "version": "1.0.0",
-    "workspaces":[
+    "workspaces": [
         "./package/*"
     ],
     "scripts": {
         "vanilla": "node ./script/vanilla.js"
-        
+    },
+    "dependencies": {
+        "lodash-es": "^4.17.21"
     }
 }

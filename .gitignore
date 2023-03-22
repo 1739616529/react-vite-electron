@@ -26,3 +26,4 @@ vanilla
 *.njsproj
 *.sln
 *.sw?
+*-lock.*
