@@ -5,9 +5,16 @@
         "./package/*"
     ],
     "scripts": {
-        "vanilla": "node ./script/vanilla.js"
+        "ts-to-js": "node ./script/vanilla.js",
+        "copy-js": "node ./script/sync.js",
+        "sync-js": "npm run ts-to-js && npm run copy-js"
     },
     "dependencies": {
         "lodash-es": "^4.17.21"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^9.0.13",
+        "fs-extra": "^10.1.0",
+        "typescript": "^5.0.2"
     }
 }

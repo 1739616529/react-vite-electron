@@ -1,32 +1,21 @@
-import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
+import { app, BrowserWindow } from "electron";
 import { join } from "path";
 import config from "project/config";
-
-/** 添加新窗口要在这里添加 窗口 标识 */
-export type Wins = {
-    home?: BrowserWindow;
-    view?: BrowserWindow;
-};
-
 export class WinDispatch {
-    private _wins: Wins = {};
-
-    public get wins() {
+    _wins = {};
+    get wins() {
         return this._wins;
     }
-
     //  默认配置
-    private _def_option: BrowserWindowConstructorOptions = {
+    _def_option = {
         width: 800,
         height: 600,
         webPreferences: {},
     };
-
-    public getWin(win_name: keyof Wins) {
+    getWin(win_name) {
         return this._wins[win_name];
     }
-
-    public createWin(win_name: keyof Wins, option: BrowserWindowConstructorOptions = {}) {
+    createWin(win_name, option = {}) {
         let is_exist = true;
         let win = this._wins[win_name];
         if (win === undefined) {
@@ -38,16 +27,13 @@ export class WinDispatch {
         }
         this._wins[win_name] = win;
         return { win, is_exist };
-    };
-
-
-    public getLoadUrl(path = ""): string {
+    }
+    ;
+    getLoadUrl(path = "") {
         const url = app.isPackaged ? `file:///${join(__dirname, "../index.html")}` : `http://${config.HOST}:${config.PORT}`;
-
         return `${url}#/${path}`;
     }
-
-    private formatWinOption<T extends BrowserWindowConstructorOptions>(option: T): T {
+    formatWinOption(option) {
         const _config = {
             ...this._def_option,
             ...option,
@@ -57,10 +43,9 @@ export class WinDispatch {
             },
         };
         if (config.WEBVIEW_NODE) {
-            _config.webPreferences
+            _config.webPreferences;
         }
-        return _config
+        return _config;
     }
 }
-
 export default new WinDispatch();

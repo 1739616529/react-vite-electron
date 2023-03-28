@@ -30,7 +30,5 @@
         "vite": "^4.2.1",
         "lodash-es": "^4.17.21"
     },
-    "dependencies": {
-        
-    }
+    "dependencies": {}
 }
